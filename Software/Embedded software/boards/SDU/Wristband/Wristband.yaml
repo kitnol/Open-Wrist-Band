@@ -1,0 +1,10 @@
+identifier: Wristband/nrf52833
+name: v1 wristband pcb
+vendor: SDU
+type: mcu
+arch: arm
+ram: 128
+flash: 512
+toolchain:
+  - zephyr
+supported: []

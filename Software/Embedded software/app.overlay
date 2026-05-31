@@ -1,0 +1,85 @@
+/* Configure CDC ACM */
+&zephyr_udc0 {
+	cdc_acm_uart0: cdc_acm_uart0 {
+		compatible = "zephyr,cdc-acm-uart";
+	};
+    cdc_acm_uart1: cdc_acm_uart1 {
+        compatible = "zephyr,cdc-acm-uart";
+    };
+};
+
+/* CDC ACM for mcumgr */
+/ {
+	chosen {
+		zephyr,uart-mcumgr = &cdc_acm_uart0;
+        zephyr,console = &cdc_acm_uart0;
+	};
+};
+
+// IMU sensor
+&i2c0 {
+    lis2ds12: lis2ds12@1e {
+        compatible = "st,lis2ds12";
+        reg = <0x1e>;
+        status = "okay";
+        /* Optional: set range and output data rate */
+		power-mode = <1>;
+        range = <2>;        // 2g
+        odr = <5>;          // 100Hz
+    };
+    rv3028: rv3028@52 {
+        compatible = "microcrystal,rv3028";
+        reg = <0x52>;
+        status = "okay";
+        backup-switch-mode = "disabled";
+    };
+};
+
+&i2c1 {
+    as7058: as7058@55 {
+        compatible = "i2c-device";
+        reg = <0x55>;
+        status = "okay";
+    };  
+};
+
+/ {
+    chosen{
+        nordic,pm-ext-flash=&is25wp01g;
+    };
+};
+
+&spi2 {   
+    status = "okay";
+    cs-gpios = <&gpio0 29 GPIO_ACTIVE_LOW>;  /* your CS pin */
+
+    is25wp01g: is25wp01gj@0 {
+        compatible = "jedec,spi-nor";
+        label = "is25wp01g";
+        reg = <0>;
+        spi-max-frequency = <104000000>;    /* 104 MHz max          */
+        jedec-id = [9d 70 21];              /* ISSI IS25WP01G       */
+        size = <DT_SIZE_M(1024)>;           /* 1 Gbit               */
+
+        // /* 4-byte addressing required for >16MB */
+        enter-4byte-addr = <1>;
+
+        // /* Erase sizes */
+        // //erase-block-size = <4096>;          /* 4KB minimum erase    */
+
+        // /* Deep power down */
+        has-dpd;
+        t-enter-dpd = <3000>; //t_DP
+        t-exit-dpd  = <5000>; //t_RES1
+
+        status = "okay";
+    };
+};
+
+/ {
+    zephyr,user {
+        /* Use a custom property name here */
+        ppg-irq-gpios = <&gpio0 10 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+        vbus-detect-gpios = <&gpio0 12 GPIO_ACTIVE_HIGH>; /* VBUSOUT from nPM1304 */
+    };
+};

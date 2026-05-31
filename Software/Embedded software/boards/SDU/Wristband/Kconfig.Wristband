@@ -1,0 +1,2 @@
+config BOARD_WRISTBAND
+	select SOC_NRF52833_QDAA

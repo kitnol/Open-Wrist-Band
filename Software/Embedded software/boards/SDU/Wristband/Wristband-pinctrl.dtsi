@@ -1,0 +1,47 @@
+&pinctrl {
+    i2c0_default: i2c0_default {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 15)>,
+				<NRF_PSEL(TWIM_SCL, 0, 17)>;
+		};
+	};
+
+	i2c0_sleep: i2c0_sleep {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 15)>,
+				<NRF_PSEL(TWIM_SCL, 0, 17)>;
+			low-power-enable;
+		};
+	};
+
+	i2c1_default: i2c1_default {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 3)>,
+				<NRF_PSEL(TWIM_SCL, 0, 2)>;
+		};
+	};
+
+	i2c1_sleep: i2c1_sleep {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 3)>,
+				<NRF_PSEL(TWIM_SCL, 0, 2)>;
+			low-power-enable;
+		};
+	};
+	spi2_default: spi2_default {
+		group1 {
+			psels = <NRF_PSEL(SPIM_SCK, 0, 31)>,
+				<NRF_PSEL(SPIM_MISO, 0, 28)>,
+				<NRF_PSEL(SPIM_MOSI, 0, 30)>;
+		};
+	};
+
+	spi2_sleep: spi2_sleep {
+		group1 {
+			psels = <NRF_PSEL(SPIM_SCK, 0, 31)>,
+				<NRF_PSEL(SPIM_MISO, 0, 28)>,
+				<NRF_PSEL(SPIM_MOSI, 0, 30)>;
+			low-power-enable;
+		};
+	};
+};

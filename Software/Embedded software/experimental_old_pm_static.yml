@@ -1,0 +1,10 @@
+external_flash:
+  address: 0x0
+  end_address: 0x8000000
+  region: external_flash
+  size: 0x8000000
+littlefs_storage:
+  address: 0x0
+  device: is25wp01g
+  region: external_flash
+  size: 0x8000000

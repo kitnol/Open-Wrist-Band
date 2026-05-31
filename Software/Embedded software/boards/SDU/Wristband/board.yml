@@ -1,0 +1,5 @@
+board:
+  name: Wristband
+  vendor: SDU
+  socs:
+    - name: nrf52833

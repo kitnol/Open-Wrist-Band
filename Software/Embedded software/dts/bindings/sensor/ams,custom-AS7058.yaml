@@ -1,0 +1,6 @@
+description: |
+    AMS (Austria Mikro Systeme) AS7058 integrated multi-vital sign monitoring device
+
+compatible: "ams,custom-as7058"
+
+include: [sensor-device.yaml, i2c-device.yaml]
