@@ -30,43 +30,42 @@ In this section is presented a documentation for hardware, mechanical and electr
 
 ## Bill of Materials (BOM)
 
-| Designator | Description | Footprint | LCSC Part | Comment |
-|-------------|-------------|----------|-----------|---------|
-| C1, C3, C4 | CAP CER 1 | 0402 | C527001 | 0.1 µF |
-| C2 | CAP CER 1 | 0402 | C5272370 | 10 µF |
-| C7 | CAP CER 1 | 0402 | C106254 | 1 µF |
-| C9, C11, C | Chip Capa | 0603 | C15849 | Capacitor |
-| C15, C19, CAP CER 1 | MURATA 0 | C2356601 | | 10 µF |
-| C17, C25 | CAP CER 1 | CAP 0603 | C15849 | 1 µF |
-| C18 | CAP CER 2 | CAP 0603 | C49326366 | 2.2 µF |
-| C20 | CAP CER 1 | CAP 0402 | C541358 | 100 µF |
-| C27 | CAP CER 4 | MURATA G | C342959 | 4.7 µF |
-| C26, C29, C | CAP CER 0 | CAP 0402 | C107020 | 0.047 µF |
-| C36, C37 | CAP CER 1 | CAP 0402 | C1822032 | 12 pF |
-| D1, D2 | LED HI/RRs | SFH 7018D4 | C2585188 | SFH 7018A |
-| D3 | LED GREEN | LED 0402_1005 | GREEN | Blue |
-| D4 | LED GREEN | LED 0402_1005 | GREEN | Green |
-| D5, D6, D7 | TVS DIODE | FP-PGB1-( | C10676 | PGB10100D4 |
-| D8, D9, D10 | Photodiode | DFN175P2 | C667359 | SFH2705 |
-| J1 | CONN RGH | FP-217179-( | C319764 | 217179-00 J1 |
-| J2 | CONN HEM/F | FP-BM02B | C594367 | BM02B-AC J2 |
-| L1 | 12.7mm(2) | HARWIN W | C923302 | M50-3530013 |
-| L1, L2 | IND_CIGT2016 | SAM | | Description |
-| R1, R2, R11 | RES 5.1K | RES 0402 | C25905 | 5.1 Kohms |
-| R3, R4, R5 | RES 10K OHM | RES 0402 | C844452 | 10 kOhms |
-| R6, R7 | RES 47K OHM | RES 0402 | C25792 | 47 kOhms |
-| R8, R10, R | RES 100K OHM | YAGEO RE-| C313329 | 100 kOhms |
-| R15, R26, R | RES SMD 4 | YAGEO RE-| C881369 | 4.7 kOhms |
-| R18 | RES SMD 1M | YAGEO RE-| C176101 | 1 kOhms |
-| SW1 | Tactile Swi | ESWI-TL33 | C913778 | - |
-| U1 | ACCEL 2-1 | FP-LGA12 | C915682 | LIS2DS12T U1 |
-| U2 | Description | QFN40_5X | C3007767 | NRF52833 U2 |
-| U3 | NPM1304 | QFN50P500X500X90-| | NPM1304-U3 |
-| U4 | Real Time | FP-RV-302 | C3019759 | RV-3028-C U4 |
-| U5 | AS7058 Se | BGA42C4C | C2378277 | AS7058-BM U5 |
+| Designator | Description | Footprint | LCSC Part | Quantity | Unit price ($) | Total cost ($) |
+|-------------|-------------|-----|-----------|---------|---------|---------|
+| C1, C3, C4, C5, C6, C8, C10, C16, C21, C22, C32, C33, C34, C35 | 100nF | 0402 | C1525 | 14 | $0.0017 | $0.0238 |
+| C2 | 10 µF | 0402 | C15525 | 1 | $0.0178 | $0.0178 |
+| C7 | 1 µF | 0402 | C52923 | 1 | $0.0053 | $0.0053 |
+| C9, C11, C14 | 1µF 40% 50V | 0603 | C15849 | 3 | $0.0156 | $0.0468 |
+| C15, C19, C23, C24, C26 | 10 µF | 0603 | C19702 | 5 | $0.0149 | $0.0745 |
+| C17, C25 | 1 µF | 0603 | C15849 | 2 | $0.0108 | $0.0216 |
+| C18 | 2.2 µF | 0603 | C49326366 | 1 | $0.0092 | $0.0184 |
+| C20 | 100 pF | 0402 | C1546 | 1 | $0.0014 | $0.0014 |
+| C27 | 4.7 µF | 0603 | C19666 | 1 | $0.0138 | $0.0138 |
+| C28, C29, C30, C31 | 0.047 µF | 0402 | C82219 | 4 | $0.0024 | $0.0096 |
+| C36, C37 | 12 pF | 0402 | C1547 | 2 | $0.0016 | $0.0032 |
+| D1, D2 | SFH 7018A | SFH 7018 | C24570310 | 2 | $1.8124 | $3.6248 |
+| D3, D4 | Blue LED | 0402 | C22355736 | 1 | $0.0087 | $0.0174 |
+| D5, D6, D7, D8 | TVS DIODE | 0402 | C10676 | 4 | $0.0426 | $0.1704 |
+| D9, D10, D11, D12 | SFH2705 | DFN175P2 | C6672359 | 4 | $1.7060 | $6.824 |
+| J1 | USB-C Molex-2171790001 | SMD | C3197684 | 1 | $0.6895 | $0.6895 |
+| J2 | Battery connector BM02B-ACHLKS | FP-BM02B | C594367 | 1 | $0.7975 |$0.7975 |
+| J3 | M50-3530542 | Plugin,P=1.27mm| C6293302 | 1 | $0.3278 | $0.3278 |
+| L1, L2 | CIGT201610LH2R2MNE | 0806 | C307626 | 2 | $0.1070 | $0.214 |
+| R1, R2, R12, R13 | 5.1K | 0402 | C25905 | 4 | $0.0009 | $0.0036 |
+| R3, R4, R5, R8, R11, R14, R19, R20, R21, R22, R23, R24, R25 | 10K | 0402 | C844452 | 17 | $0.0013 | $0.0221 |
+| R6, R7 | 47K | 0402 | C25792 | 2 | $0.001 | $0.002 |
+| R9, R10, R16, R17 | 100K | 0402 | C25741 | 4 | $0.0009 | $0.0036 | 
+| R15, R26, R27, R28 | 4.7K | 0402 | C25900 | 4 | $0.001 | $0.004  |
+| R18 | 1K | 0402 | C11702 | 1 | $0.001 | $0.001 |
+| SW1 | Tactile Switch |  |  |  |  |  |
+| U1 | LIS2DS12TR | LGA-12(2x2) | C915682 | 1 | $2.0411 | $2.0411 |
+| U2 | nRF52833 | QFN40_5X5 | C3007767 | 1 | $5.0552 | $5.0552 |
+| U3 | NPM1304 | QFN32 | C49449665 | 1 | $4.3002 | $4.3002 | 
+| U4 | RV-3028-C7 | FP-RV-3028-C7 | C3019759 | 1 | $2.2667 | $2.2667 |
+| U5 | AS7058 | WLCSP-42(2.8x2.6) | C23782775 | 1 | $7.5763 | $7.5763 |
 | U6 | Flash Mem | SOIC-8 | C7519 | IS25WP01J U6 |
-| U7 | 5A 17V 6V | STM-SOT2 | C3197684 | USBLC6-2@ U7 |
-| Y1 | CRYSTAL 3 | ABRACONI | C124330 | 32MHz Y1 |
+| U7 | USBLC6-2SC6 (ESD) | SOT-23-6 | C2827654 | 1 | $0.0410 | $0.0410 |
+| Y1 | XYDCELNANF-32M | SMD2520-4P | C124330 | 1 | $0.3137 | $0.3137 |
 
 **Total Cost**: [CALCULATE TOTAL]
 
