@@ -8,11 +8,10 @@ Here is presented a documentation for hardware, mechanical and electronics parts
 
 1. [Specifications](#specifications)
 2. [PCB](#pcb)
-3. [Connectivity](#connectivity)
-4. [Mechanical](#mechanical)
-5. [Full assembly](#full-assembly)
-6. [Testing & Validation](#testing--validation)
-7. [Bill of Materials (BOM)](#bill-of-materials-bom)
+3. [Mechanical](#mechanical)
+4. [Full assembly](#full-assembly)
+5. [Testing & Validation](#testing--validation)
+6. [Bill of Materials (BOM)](#bill-of-materials-bom)
 
 ## Specifications
 
