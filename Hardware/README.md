@@ -2,20 +2,17 @@
 
 ## Overview
 
-Here is presented a documentation for hardware, mechanical and electronics parts. Here described hardware manufacturing and assembly process.
+Here is presented a documentation for hardware, mechanical and electronics parts. Here described hardware manufacturing, assembly process and testing.
 
 ## Table of Contents
 
 1. [Specifications](#specifications)
-2. [PCB ordering](#pcb-oredering)
-3. [Bill of Materials (BOM)](#bill-of-materials-bom)
-4. [Assembly](#assembly)
-5. [PCB Design](#pcb-design)
-6. [Connectivity](#connectivity)
-7. [Sensors](#sensors)
-8. [Mechanical Design](#mechanical-design)
-9. [Testing & Validation](#testing--validation)
-
+2. [PCB](#pcb)
+3. [Connectivity](#connectivity)
+4. [Mechanical](#mechanical)
+5. [Full assembly](#full-assembly)
+6. [Testing & Validation](#testing--validation)
+7. [Bill of Materials (BOM)](#bill-of-materials-bom)
 
 ## Specifications
 
@@ -27,76 +24,117 @@ Here is presented a documentation for hardware, mechanical and electronics parts
 | Operating Voltage | 3.6-4.2V | From the battery |
 | Current Consumption | 1mA | When PPG and EDA measurements are on |
 | Wrist circumference | 150-240 mm | |
+| Charging current | 100mA | |
+| Battery capacity | 800mA | Smaller battery capacity can be used |
 
 
-## Assembly
+## PCB
+### PCB ordering
+
+In this section described ordering process of the PCB manufacturing from JLCPCB.
+
+After uploading gerber zip archive form [`./PCB/Fabrication files/Gerber.zip`](https://github.com/kitnol/Open-Wrist-Band/blob/main/Hardware/PCB/Fabrication%20files/Gerber.zip) There is few key options needed to be selected for PCB to be manufactured correctly.
+
+Necessary options:
+- **Layers**: 4
+- **PCB Thickness**: 1.6mm
+- **Surface Finish**: LeadFree HASL
+- **Outer Copper Weight**: 1oz
+- **Inner Copper Weight** 0.5oz
+- **Via Covering**: Epoxy Filled Capped 
+- **Min via hole size/diameter**: 0.15mm/(0.25/0.3mm) 
+
+Recommended options:
+- **Product Type**: Medical
+- **Electrical Test**: Flying Probe Fully Test
 
 ### PCB Assembly
-1. [STEP 1 - DESCRIBE ASSEMBLY PROCESS]
-2. [STEP 2]
-3. [STEP 3]
 
-### Housing Assembly
-[DESCRIBE HOW COMPONENTS ARE ASSEMBLED INTO THE ENCLOSURE]
+You can choose between two methods for assembling the PCB:
 
-### Testing After Assembly
-[DESCRIBE ASSEMBLY TESTING PROCEDURES]
+- **Manual Assembly**: Order all components listed in the `BOM.csv` and assemble the board entirely on your own.
 
-## PCB Design
+- **Partial Assembly by JLCPCB**: Upload both `BOM.csv` and `CPL.csv` to the JLCPCB website for automated assembly.
 
-- **Layout Files**: [/PCB/Altium/PCB1.PcBDoc](https://github.com/kitnol/Open-Wrist-Band/blob/main/Hardware/PCB/Altium/PCB1.PcbDoc)
-- **Design Software**: Altium
-- **Board Dimensions**: 30.3x30 mm
-- **Number of Layers**: 4
+**Important Note**: Because they are not carried in the standard JLCPCB component library, you must purchase the following parts separately and solder them yourself:
 
-### Schematics
-[REFERENCE SCHEMATIC FILES OR ADD SCHEMATIC DESCRIPTION]
+- Flash Memory: IS25WP01GJ
 
-## Power Management
+- Power Management IC (PMIC): nPM1304
 
-### Charging
-- **Charging Method**: USB-C
-- **Charging Current**: 100mA
-- **Charging Time**: 3-7 hours (depending on a battery capacity)
+Depending on the time of order additional components may occasionally be out of stock at JLCPCB, requiring you to source and solder them manually as well.
 
-### Battery Management
-- **BMS Type**: [IF APPLICABLE, SPECIFY]
-- **Low Battery Threshold**: [SPECIFY PERCENTAGE]
-- **Power States**: [DESCRIBE DIFFERENT POWER STATES]
+## Mechanical 
 
-## Connectivity
+### Enclosure manufacturing
 
-### Data Interfaces
-- **Serial Communication**: USB
-- **Programming Interface**: USB or J-LINK
-- **Programming voltage**: 1.8V
+The primary method for fabricating the enclosure is FDM 3D printing.
 
-## Sensors
+- **Material Selection**: PETG is the recommended choice, though PLA or any other hypoallergenic (skin-safe) plastic may be used.
 
-| Sensor | Type | Range | Purpose |
-|--------|------|-------|---------|
-| [SENSOR NAME] | [TYPE] | [RANGE] | [PURPOSE] |
-| [ADD MORE] | | | |
+- **Post-Processing**: After printing, sand the parts and apply a layer of filler-primer to smooth out the print lines.
 
-## Mechanical Design
+**Important Safety Note**: Because this device comes into contact with the body, ensure that all selected plastics, primers, and finishes are non-allergenic and completely skin-safe once fully cured.
 
-### Enclosure Material
-- **Material**: PLA, PETG or any other non allergic materials
+### Electrodes
 
-### Dimensions & Layout
-[DESCRIBE LAYOUT AND DIMENSIONS]
+The electrodes can be fabricated using either CNC machining or metal 3D printing, utilizing the 3D model found in `./3d models/Electrode.stl`.
 
-### Durability Features
-- **Water Resistance**: [IPX RATING]
-- **Shock Resistance**: [SPECIFY LEVEL]
-- **Material Durability**: [DESCRIBE]
+- **Material**: Stainless Steel 316 (SS316) is required.
+
+- **Surface Finish**: Because these electrodes come into direct contact with the skin, they must be polished to a smooth surface finish to prevent irritation.
+
+After fabrication, spot-weld a nickel strip to each electrode (the enclosure features a dedicated cutout to accommodate this). These nickel strips provide a solderable surface, allowing you to connect a wire from the electrodes directly to the PCB.
+
+### PPG window
+
+For the PPG sensor to function correctly, it requires an unobstructed view of the skin while remaining protected from sweat and moisture. To achieve this, fabricate a small protective separator from a **0.5 mm thick sheet of transparent PET plastic or glass**. Installation Steps:
+  
+- **Cut the Window**: Cut a $11.4 \text{ mm} \times 12.4 \text{ mm}$ rectangle out of the transparent material.
+  
+- **Apply Adhesive**: Using a toothpick, carefully apply a small amount of superglue along the recessed rim of the enclosure's cutout. 
+  **Caution**: Avoid getting any glue near the center of the cutout where it could obscure the LEDs or photodiodes.
+  
+- **Set the Window**: Place the transparent window into the cutout and apply light, steady finger pressure for 1 to 2 minutes to ensure a secure bond.
+
+## Full assembly
+
+Once all components have been sourced and manufactured, you can proceed with the final assembly.
+
+**Important**: You must flash the firmware onto the MCU using a J-LINK debugger before assembling the hardware. Please refer to the flashing guide located in the [Software](https://github.com/kitnol/Open-Wrist-Band/tree/main/Software) folder before proceeding. Also remove the male pins for J-LINK after programming, future updates can be done via USB.
+
+**Step 1: Install the Electrodes**
+
+1. Gather the fully prepared electrodes (with nickel strips attached), the casing body, and the 3D-printed jig (Glue_support.stl).
+   
+2. Route the nickel strip through its designated cutout in the casing, apply superglue beneath the electrode, and press it firmly into position.
+   
+3. Use the Glue_support.stl jig to clamp the casing body and electrode securely in a vice.
+   
+4. Allow **10–20 minutes** for the glue to fully cure. Repeat this process separately for each electrode.
+
+**Step 2: PCB Mounting & Wiring**
+
+1. Seat the PCB into the casing body.
+   
+2. Solder lead wires onto the exposed electrode nickel strips.
+   
+3. Solder the opposite ends of these wires into holes 2 and 4 of the PCB (located on the side opposite the USB port, counting sequentially from the outer edge of the PCB).
+
+**Step 3: Battery Installation & Final Closure**
+
+1. Connect the battery, position it neatly on top of the PCB, and place the lid over the casing.
+
+2. Caution: Double-check that no wires are pinched or trapped between the casing body and the lid.
+   
+3. Secure the enclosure using four M2 x 3mm screws to complete the assembly.
 
 ## Testing & Validation
 
 ### Hardware Testing
 - [ ] Short circuits test
 - [ ] Power test
-- [ ] Charging test (TODO)
+- [ ] Charging test **(TODO)**
 
 #### Short circuits test
 
@@ -134,8 +172,9 @@ Before programming, power the PCB via USB or battery and use a multimeter to mea
 | ACHLR-02V-S | Battery connector | 1 | €0.13 | [ACHLR-02V-S](https://www.digikey.de/en/products/detail/jst-sales-america-inc/achlr-02v-s/5272191) |
 | ASACHLSACHL28W152 | Battery wires | 1 | €0.98 | [ASACHLSACHL28W152](https://www.digikey.de/en/products/detail/jst-sales-america-inc/ASACHLSACHL28W152/8107430?s=N4IgTCBcDaICwFYEFoDMYEHZkDkAiIAugL5A) |
 | M2 3mm | Screw for lid | 4 | €5.88 | [M2 3mm](https://dk.rs-online.com/web/p/maskinskruer/9141560) |
+| PET 0.5mm | Plastic sheet | 1 | €7.5 | [PET 0.5mm](https://www.amazon.com/Plastic-Clarity-Resistant-Display-Packaging/dp/B0GJ6CKP9T?th=1) |
 
-**Total Cost**: €31.18
+**Total Cost**: €38.68
 
 ### Electronics BOM
 | Designator | Description | Footprint | JLCPCB Part | Quantity | Unit price ($) | Total cost ($) |
