@@ -63,7 +63,7 @@ In this section is presented a documentation for hardware, mechanical and electr
 | U3 | NPM1304 | QFN32 | C49449665 | 1 | $4.3002 | $4.3002 | 
 | U4 | RV-3028-C7 | FP-RV-3028-C7 | C3019759 | 1 | $2.2667 | $2.2667 |
 | U5 | AS7058 | WLCSP-42(2.8x2.6) | C23782775 | 1 | $7.5763 | $7.5763 |
-| U6 | Flash Mem | SOIC-8 | C7519 | IS25WP01J U6 |
+| U6 | IS25WP01GJ-RMLE-TY (128MB) | 16-SOIC |  | 1 | $14.38360 | $14.38360 |
 | U7 | USBLC6-2SC6 (ESD) | SOT-23-6 | C2827654 | 1 | $0.0410 | $0.0410 |
 | Y1 | XYDCELNANF-32M | SMD2520-4P | C124330 | 1 | $0.3137 | $0.3137 |
 
