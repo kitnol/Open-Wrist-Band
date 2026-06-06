@@ -1,6 +1,6 @@
 identifier: Wristband/nrf52833
 name: v1 wristband pcb
-vendor: SDU
+vendor: openwristband
 type: mcu
 arch: arm
 ram: 128

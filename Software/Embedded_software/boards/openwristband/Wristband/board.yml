@@ -1,5 +1,5 @@
 board:
   name: Wristband
-  vendor: SDU
+  vendor: openwristband
   socs:
     - name: nrf52833
