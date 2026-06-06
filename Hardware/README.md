@@ -120,6 +120,7 @@ Once all components have been sourced and manufactured, you can proceed with the
 2. Solder lead wires onto the exposed electrode nickel strips.
    
 3. Solder the opposite ends of these wires into holes 2 and 4 of the PCB (located on the side opposite the USB port, counting sequentially from the outer edge of the PCB).
+![Electrodes connection](doc/PCB_front.JPG)
 
 **Step 3: Battery Installation & Final Closure**
 
