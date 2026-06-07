@@ -6,7 +6,7 @@ PACKET_SIZE = 1280
 TOTAL_BYTES = NUM_PACKETS * PACKET_SIZE
 OUTPUT_FILE = "data.bin"
 
-with serial.Serial("COM21", 115200, timeout=60) as s:
+with serial.Serial("COM8", 115200, timeout=60) as s:
     print(f"Waiting for {TOTAL_BYTES} bytes ({NUM_PACKETS} packets)...")
     
     start_time = time.time()
