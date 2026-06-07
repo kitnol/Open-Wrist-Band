@@ -9,7 +9,7 @@
   - `usb_drv.c` - the implementation of the usb interface management
 - `sysbuild/` - mcuboot bootloader implementation and configuration
 - `app.overlay` - configuration of specifc components present on the board
-- `prj.conf` - kconfig project configuration enabling and configuring different zephyros features
+- `prj.conf` - project configuration enabling and configuring different zephyros features
 
 
 Step-by-step guide on how to set up coding environment for embedded software development. The firmware was developed using nRF connect SDK v3.2.4 with nRF extensions enabled, using Visual studio code.
@@ -40,4 +40,34 @@ Prerequisite: Download and open AuTerm as mentioned in course https://academy.no
 6. Flash using the MCUmgr section  
 ![Flashing](_doc/flashing.png)
 
-## Configurnig measurement parameters
+## Configurnig measurement parameters using AS7058 Sensor Driver
+### Overview
+This driver provides initialization and control for the AMS AS7058 multi-parameter biosensor used for PPG (photoplethysmography), ECG, and BioZ measurements. The sensor communicates via I2C and supports configurable LED modulation, photodiode selection, and FIFO-based data acquisition.
+
+### Configuration
+
+The driver uses preprocessor macros for configuration (defined in `as7058_drv.c`):
+
+#### Measurement Sampling
+- `PPG_FREQ`: PPG sampling frequency in Hz (default: 10 Hz)
+- `ECG_FREQ`: ECG sampling frequency in Hz (default: 10 Hz)
+- `FIFO_SAMPLE_COUNT`: Number of samples to buffer before FIFO threshold interrupt (default: 423, max: 511) This should be coordinated together with the byte structure that stores the offloaded data from FIFO
+
+#### LED Configuration
+- `PPG_MOD_1`, `PPG_MOD_2`: Enable/disable PPG modulators 1 and 2
+- `LED_x_max_current`: Max current setting per LED (0-3, corresponding to 25mA, 150mA, 225mA, or 300mA)
+- `LED_x_current`: Actual LED current in mA
+
+**PCB LED Mapping:**
+- LED1: IR_1, LED2: GREEN_1, LED3: IR_2
+- LED5: RED_2, LED6: GREEN_2, LED7: RED_1
+
+#### Photodiode Selection
+- `LED_SUBx`: Configure which LEDs are active for measurement sub-sample x
+- `PPG1_PDSELx`, `PPG2_PDSELx`: Configure which photodiodes are active for each sub-sample
+
+Each register uses bit-field encoding:
+- `LED_SUB` bits 0-3: Driver1 LED selection, bits 4-7: Driver2 LED selection
+- `PDSEL` bits 0-7: Photodiode 1-8 enable/disable  
+
+#### NOTE: For more detailed configuration please consult with the datasheet of AS7058 sensor available online, where all of the registers and their function/configuration is described in detail.
